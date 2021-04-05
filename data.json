@@ -1,29 +1,13 @@
 {
-	"exersices" : {
-		"running": 
-		
-		
-		
-		"pushup": 
-		
-		
-
-		"pullup": 
-		
-		
-
-		"squats": 
-
-	} 
-		
-
-	"user_data": {
-		"Age": 
-		"Gender":
-		"Height":
-		"Weight":
-		"Level of Acivity": 1, 2, 3
-		
+	"user": {
+		"usrname": "",
+		"pssword": "",
+		"name": "" ,
+		"assumed_gender": [0] ,
+		"age": 0 ,
+		"height": 0 ,  
+		"weight": 0 , 
+		"activity_level": 0
 	}
 
 }
