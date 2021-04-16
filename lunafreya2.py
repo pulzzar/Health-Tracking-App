@@ -23,6 +23,28 @@ def save_file(user):
 
 user = load_info()
 
+
+overweight_list = ["- High blood pressure", "- Type II diabetes", "- Coronary heart disease", "- Stroke", "- Gallbladder disease", "- Sleep apnea and breathing problems", "- Certain cancers (endometrial, breast, colon, kidney, gallbladder, liver)", "- Low quality of life", "- Mental illnesses such as clinical depression, anxiety, and others", "- Body pains and difficulty with certain physical functions"]
+
+underweight_list = ["- Malnutrition, vitamin deficiencies, anemia (lowered ability to carry blood vessels)",
+"- Osteoporosis, a disease that causes bone weakness, increasing the risk of breaking a bone", "- A decrease in immune function"
+"- Growth and development issues, particularly in children and teenagers"]
+
+advice_overweight = ["- Diet. A steady weight loss of about one pound a week is the safest way to lose weight.",
+"- Regular exercise such as brisk walking, running, swimming, biking, dancing. The amount of exercise needed to lose weight is different for everyone.",
+"Behavior modification techniques such as:",
+"",
+"- Keep a food diary of everything you eat.",
+"- Shop from a list and do not shop when you're hungry.",
+"- Take a different route if you usually pass by a tempting fast food place.",
+"",
+"If you have been unable to lose weight or keep if off with diet, exercise, and behavior changes:",
+"",
+"- Weight-loss medications might be recommended for you.",
+"- Gastrointestinal surgery is sometimes recommended for people with severe obesity."]
+
+diet_obesity = ["First option.", "", "Does not contain any animal product (meat, fish, poultry, eggs, or dairy) but emphasizes plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Second option.", "", "Does not contain meat, fish, or poultry but does contain eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Salad - Black-eyed peas and brown rice with chopped tomatoes and roasted peppers."]
+
 print("Hi! I am Luna, your personal health assistant")
 
 time.sleep(2)
@@ -106,7 +128,14 @@ bmi = round(user["weight"] / (user["height"]/100)**2)
 print("Your body mass index is", bmi, ", which is...")
 
 if (bmi<18.5):
-    print("Very bad. You are extremaly underweight and you need to see your doctor to try and fix it, I cannot help in this case. Please, go to your doctor as soon as possible and stay healthy.")
+    
+    print("Very bad. You are extremaly underweight and you need to see your doctor to try and fix it.")
+    
+    print("Being underweight has its own associated risks, listed below")
+    
+    for item2 in underweight_list:
+        
+        print(item2)
 
 if (18.5<bmi<24.9):
     
@@ -160,7 +189,40 @@ if (18.5<bmi<24.9):
 if (25<bmi<29.9):
     
     print("Above Average. You are overweight but it can be fixed with the help of regular exercises and healthy eating habits, and I can surely help with that!")
+    
+    print("Being overweight increases the risk of a number of serious diseases and health conditions. Below is a list of said risks.")
+    
+    for item in overweight_list:
+        
+        print(item)
 
 if (30<bmi):
     
-    print("Very bad. This weight can be catastrophic for your organism, you need to see your doctor as soon as you can! I cannot help with this situation, only professional can. See a doctor as soon as possible and stay healthy.")
+    print("Very bad. This weight can be catastrophic for your organism, you need to see your doctor as soon as you can!")
+
+    print("Being overweight increases the risk of a number of serious diseases and health conditions. Below is a list of said risks.")
+
+    for item in overweight_list:
+
+        print(item)
+
+    print("So what advices can I give?")
+
+    for advice in advice_overweight:
+        
+        print(advice)
+
+    overweight = ["Diet Advices"]
+
+    choice = enquiries.choose("Advice:", overweight)
+
+    print(choice)
+
+    if (choice == "Diet Advices"):
+
+        print("There are two options for you right now")
+
+        for diet in diet_obesity:
+            
+            print(diet)
+    
