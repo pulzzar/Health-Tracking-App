@@ -3,7 +3,7 @@ import time
 import enquiries
 import pickle
 import random
-
+import sys
 def load_info():
     with open('data.json') as user_info:
         user = json.load(user_info)
@@ -45,7 +45,37 @@ advice_overweight = ["- Diet. A steady weight loss of about one pound a week is 
 
 diet_obesity = ["First option.", "", "Does not contain any animal product (meat, fish, poultry, eggs, or dairy) but emphasizes plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Second option.", "", "Does not contain meat, fish, or poultry but does contain eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Salad - Black-eyed peas and brown rice with chopped tomatoes and roasted peppers."]
 
+diet_overweight = ["First option.", "", "Contains all foods, including meat, poultry, fish and shellfish, eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans. However, red meat and poultry and fairly limited",
+"Second option.", "",  "Contains all food groups",
+"Salad - Black-eyed peas and brown rice with low-fat sausage, chopped tomatoes, roasted peppers, and reduced fat cheddar cheese"]
+
+vegan_meals = ["Avocado.",
+"Quinoa.",
+"Tahini." ,
+"Olive Oil.",
+"Dried Fruit.",
+"Legumes.",
+"Sweet Potatoes."]
+
+non_vegan_meals = ["Meat (beef, pork, lamb, and other red meats)",
+"Eggs" ,
+"Cheese",
+"Butter",
+"Dairy products",
+"Snacks that contain plenty of protein and healthy carbohydrates (jerky, trail mix, Greek yogurt parfait…)",
+"Potatoes and starches.",
+"Salmon and oily fish.",
+"Nuts and nut butters.",
+"Protein shakes. Protein shakes can help a person to gain weight easily and efficiently."
+]
+
+
 print("Hi! I am Luna, your personal health assistant")
+
+#for char in "Hi! I am Luna, your personal health assistant":
+#    print(char, end="")
+#    sys.stdout.flush()
+#    time.sleep(0.2)
 
 time.sleep(2)
 
@@ -137,6 +167,72 @@ if (bmi<18.5):
         
         print(item2)
 
+    under = ["Diet Advices", "Exercises"]
+
+    choice = enquiries.choose("On which of these you want an advice?", under)
+
+    print(choice)
+
+    if (choice == "Exercises"):
+
+        print("Your BMI is", bmi, "so here are some exercises for you")
+
+        if (bmi<16):
+
+            exsixteen = ["10 push ups","10 press","20 jumping jacks", "10 sit ups","20s plank + 5k Jog"]
+            
+            for item in exsixteen:
+
+                print(item)
+
+                sys.stdout.flush()
+
+                time.sleep(1)
+
+        if (bmi<17):
+
+            seventeen = ["15 push ups","15 press","25 jumping jacks","15 sit ups","25s plank + 5k Jog"]
+
+            for item in seventeen:
+
+                print(item)
+
+                sys.stdout.flush()
+
+                time.sleep(1)
+
+    if (choice == "Diet Advices"):
+        
+        vegnonveg = ["Vegan Meals", "Non-vegan Meals"]
+
+        choice = enquiries.choose("Are you a vegan or a non-vegan?", vegnonveg)
+
+        print(choice)
+
+        print("Okay, so you chose", choice, "then here are some advices and meals you SHOULD eat")
+
+        if (choice == "Vegan Meals"):
+            
+            for veg in vegan_meals:
+
+                print(veg)
+
+                sys.stdout.flush( )
+
+                time.sleep(1)
+
+        if (choice == "Non-vegan Meals"):
+
+            for non_veg in non_vegan_meals:
+
+                print(non_veg)
+
+                sys.stdout.flush()
+
+                time.sleep(1)
+
+
+
 if (18.5<bmi<24.9):
     
     print("Average. You are in a pretty good shape and I can give some advices on how to keep that shape!")
@@ -149,13 +245,22 @@ if (18.5<bmi<24.9):
 
     if (choice == "Exercises"):
         
+    
 
-        average_exercise = ["a", "b", "c", "d"]
-        
-        rand_av_ex = random.choice(average_exercise)
-        
-        print(rand_av_ex)
+        if (bmi>18.5):
+            
+            print("Your BMI is", bmi, "So here are some exercises for you")
 
+            average_exercise = ["20 push ups","20 press","30 jumping jacks","20 sit ups","30s plank + 5k Jog"]
+        
+            for item in average_exercise:
+            
+                print(item)
+
+                sys.stdout.flush()
+
+                time.sleep(1)
+                
 
     
     elif (choice == "Diet Advices"):
@@ -175,15 +280,6 @@ if (18.5<bmi<24.9):
 
         print(rand_av_hab)
 
-    
-    elif (choice == "Bad Habits Monitor"):
-
-        b_habits = ["Smoking", "Alcohol Usage"]
-
-        choice = enquiries.choose("What bad habits do you have?", b_habits)
-
-        print(choice)
-
 
 
 if (25<bmi<29.9):
@@ -196,6 +292,24 @@ if (25<bmi<29.9):
         
         print(item)
 
+    lower_overweight = ["Diet Advices"]
+
+    choice = enquiries.choose("Advice:", lower_overweight)
+
+    print(choice)
+
+    if (choice == "Diet Advices"):
+
+        print("There are two options for you right now")
+        
+        for diet in diet_overweight:
+
+            print(diet)
+
+            sys.stdout.flush()
+
+            time.sleep(.2)
+
 if (30<bmi):
     
     print("Very bad. This weight can be catastrophic for your organism, you need to see your doctor as soon as you can!")
@@ -206,11 +320,21 @@ if (30<bmi):
 
         print(item)
 
+        sys.stdout.flush()
+        
+        time.sleep(1)
+    
     print("So what advices can I give?")
 
     for advice in advice_overweight:
         
         print(advice)
+        
+        sys.stdout.flush()
+
+        time.sleep(1)
+
+
 
     overweight = ["Diet Advices"]
 
@@ -221,8 +345,13 @@ if (30<bmi):
     if (choice == "Diet Advices"):
 
         print("There are two options for you right now")
-
-        for diet in diet_obesity:
+        
+        for item in diet_obesity:
             
-            print(diet)
+            print(item)
+
+            sys.stdout.flush()
+
+            time.sleep(1)
+
     
