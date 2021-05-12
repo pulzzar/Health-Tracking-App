@@ -42,7 +42,6 @@ advice_overweight = ["- Diet. A steady weight loss of about one pound a week is 
 "",
 "- Weight-loss medications might be recommended for you.",
 "- Gastrointestinal surgery is sometimes recommended for people with severe obesity."]
-
 diet_obesity = ["First option.", "", "Does not contain any animal product (meat, fish, poultry, eggs, or dairy) but emphasizes plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Second option.", "", "Does not contain meat, fish, or poultry but does contain eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Salad - Black-eyed peas and brown rice with chopped tomatoes and roasted peppers."]
 
 diet_overweight = ["First option.", "", "Contains all foods, including meat, poultry, fish and shellfish, eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans. However, red meat and poultry and fairly limited",
@@ -72,46 +71,46 @@ non_vegan_meals = ["Meat (beef, pork, lamb, and other red meats)",
 
 print("Hi! I am Luna, your personal health assistant")
 
-#for char in "Hi! I am Luna, your personal health assistant":
-#    print(char, end="")
-#    sys.stdout.flush()
-#    time.sleep(0.2)
+for char in "Hi! I am Luna, your personal health assistant":
+    print(char, end="")
+    sys.stdout.flush()
+    time.sleep(0.2)
 
 time.sleep(2)
 
-#print("Please, show me who you are!")
+print("Please, show me who you are!")
     
-# def login(usr):
-#    user["usrname"] = input("Name: ")
-#    user["pssword"] = input("Password: ")
+def login(usr):
+    user["usrname"] = input("Name: ")
+    user["pssword"] = input("Password: ")
 
-#    if uN in usr.keys():
-#        if user["pssword"] == usr(user["usrname"]):
-#            print("Welcome back.")
-#        else:
-#            print("Incorrect password.")
-#            return False
-#    else:
-#        print("Hello, new person.")
-#    writeUsers(usr)
-#    return True
+    if uN in usr.keys():
+        if user["pssword"] == usr(user["usrname"]):
+            print("Welcome back.")
+        else:
+            print("Incorrect password.")
+            return False
+    else:
+        print("Hello, new person.")
+    writeUsers(usr)
+    return True
 
-#def readUsers():
-#    try:
-#        with open("data.json", "r") as f:
-#            return json.load(f)
-#    except FileNotFoundError:
-#        return {}
+def readUsers():
+    try:
+        with open("data.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-#def writeUsers(usr):
-#    with open("data.json", "w+") as f:
-#            json.dump(usr, f, indent = 2)
+def writeUsers(usr):
+    with open("data.json", "w+") as f:
+            json.dump(usr, f, indent = 2)
 
-#users = readUsers()
-#success = login(users)
+users = readUsers()
+success = login(users)
 
-#while not success:
-#    success = login(users)
+while not success:
+    success = login(users)
 
 print("Please help me to understand what is your case so I can help you!")
 
