@@ -2,18 +2,12 @@ import json
 import time
 import enquiries
 import pickle
-import random
 import sys
+
 def load_info():
     with open('data.json') as user_info:
         user = json.load(user_info)
     return user
-
-def check_user(username):
-    for user in users:
-        user_s = user["name"]
-        if (username == user_s):
-            print(username)
 
 def save_file(user):
     f = open("data.json", "w")
@@ -22,6 +16,7 @@ def save_file(user):
    
 
 user = load_info()
+
 
 
 overweight_list = ["- High blood pressure", "- Type II diabetes", "- Coronary heart disease", "- Stroke", "- Gallbladder disease", "- Sleep apnea and breathing problems", "- Certain cancers (endometrial, breast, colon, kidney, gallbladder, liver)", "- Low quality of life", "- Mental illnesses such as clinical depression, anxiety, and others", "- Body pains and difficulty with certain physical functions"]
@@ -42,89 +37,22 @@ advice_overweight = ["- Diet. A steady weight loss of about one pound a week is 
 "",
 "- Weight-loss medications might be recommended for you.",
 "- Gastrointestinal surgery is sometimes recommended for people with severe obesity."]
-diet_obesity = ["First option.", "", "Does not contain any animal product (meat, fish, poultry, eggs, or dairy) but emphasizes plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Second option.", "", "Does not contain meat, fish, or poultry but does contain eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans", "", "Salad - Black-eyed peas and brown rice with chopped tomatoes and roasted peppers."]
-
-diet_overweight = ["First option.", "", "Contains all foods, including meat, poultry, fish and shellfish, eggs and dairy, in addition to plant-based foods, such as fruits, vegetables, whole grains, and legumes/beans. However, red meat and poultry and fairly limited",
-"Second option.", "",  "Contains all food groups",
-"Salad - Black-eyed peas and brown rice with low-fat sausage, chopped tomatoes, roasted peppers, and reduced fat cheddar cheese"]
-
-vegan_meals = ["Avocado.",
-"Quinoa.",
-"Tahini." ,
-"Olive Oil.",
-"Dried Fruit.",
-"Legumes.",
-"Sweet Potatoes."]
-
-non_vegan_meals = ["Meat (beef, pork, lamb, and other red meats)",
-"Eggs" ,
-"Cheese",
-"Butter",
-"Dairy products",
-"Snacks that contain plenty of protein and healthy carbohydrates (jerky, trail mix, Greek yogurt parfait…)",
-"Potatoes and starches.",
-"Salmon and oily fish.",
-"Nuts and nut butters.",
-"Protein shakes. Protein shakes can help a person to gain weight easily and efficiently."
-]
-
 
 print("Hi! I am Luna, your personal health assistant")
 
-for char in "Hi! I am Luna, your personal health assistant":
-    print(char, end="")
-    sys.stdout.flush()
-    time.sleep(0.2)
-
-time.sleep(2)
-
-print("Please, show me who you are!")
-    
-def login(usr):
-    user["usrname"] = input("Name: ")
-    user["pssword"] = input("Password: ")
-
-    if uN in usr.keys():
-        if user["pssword"] == usr(user["usrname"]):
-            print("Welcome back.")
-        else:
-            print("Incorrect password.")
-            return False
-    else:
-        print("Hello, new person.")
-    writeUsers(usr)
-    return True
-
-def readUsers():
-    try:
-        with open("data.json", "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
-
-def writeUsers(usr):
-    with open("data.json", "w+") as f:
-            json.dump(usr, f, indent = 2)
-
-users = readUsers()
-success = login(users)
-
-while not success:
-    success = login(users)
-
 print("Please help me to understand what is your case so I can help you!")
 
-time.sleep(2)
+time.sleep(1) 
 
 user["name"] = input("First of all, what is your name? ")
 
 print("Oh hi,", user["name"], ", you look gorgeous today!")
 
-time.sleep(2)
+time.sleep(1)
 
 print("Okay, now give me some more info")
 
-time.sleep(2)
+time.sleep(1)
 
 user["assumed_gender"] = ["Male", "Female"]
 
@@ -134,27 +62,18 @@ print(choice)
 
 user["weight"] = float(input("I know this one is a personal one but... How much do you weight? (in kg's, please... I am Europian) "))
 
-time.sleep(2)
+time.sleep(1)
 
 user["height"] = float(input("How tall are you (in cm, please...) "))
 
-time.sleep(2)
-
-print("I know we live in an environment where you don't even have to walk as anything can be done online, but...")
-
-user["activity_level"] = ["Low", "Medium", "High"]
-
-choice =  enquiries.choose("What is your daily level of activity? This means walking, jogging, other sports (walking to get your TV remote is an activity too): ", user["activity_level"])
-
-print(choice)
-
 print("Okay, now calculating some stuff... (*beep bop beep* and other cliche robot noises...)")
 
-time.sleep(3)
+time.sleep(2)
 
 bmi = round(user["weight"] / (user["height"]/100)**2)
 
 print("Your body mass index is", bmi, ", which is...")
+
 
 if (bmi<18.5):
     
@@ -166,120 +85,128 @@ if (bmi<18.5):
         
         print(item2)
 
-    under = ["Diet Advices", "Exercises"]
+    
+    def menu():
+    
+        print("Press The Key To Choose\n  1. Diet \n 2. Exercises \n 3. Exit")
 
-    choice = enquiries.choose("On which of these you want an advice?", under)
+        option = input()
 
-    print(choice)
+        if (option == "2"):
 
-    if (choice == "Exercises"):
+            print("Your BMI is", bmi, "so here are some exercises for you")
 
-        print("Your BMI is", bmi, "so here are some exercises for you")
+            user["exercise"]["jog"] = "5km"
 
-        if (bmi<16):
+            user["exercise"]["plank"] = "25s"
+                
+            user["exercise"]["pushup"] = 15
 
-            exsixteen = ["10 push ups","10 press","20 jumping jacks", "10 sit ups","20s plank + 5k Jog"]
+            user["exercise"]["press"] = 15
+
+            user["exercise"]["squat"] = 15
+
+            user["exercise"]["jumping_jack"] = 25
+                
+            print("Jogging: ", user["exercise"]["jog"], "Plank: ", user["exercise"]["plank"], "Push-up: ", user["exercise"]["pushup"],"Press: ", user["exercise"]["press"], "Squats: ", user["exercise"]["squat"], "Jumping Jacks: ", user["exercise"]["jumping_jack"], sep='\n')
             
-            for item in exsixteen:
-
-                print(item)
-
-                sys.stdout.flush()
-
-                time.sleep(1)
-
-        if (bmi<17):
-
-            seventeen = ["15 push ups","15 press","25 jumping jacks","15 sit ups","25s plank + 5k Jog"]
-
-            for item in seventeen:
-
-                print(item)
-
-                sys.stdout.flush()
-
-                time.sleep(1)
-
-    if (choice == "Diet Advices"):
+            menu()
         
-        vegnonveg = ["Vegan Meals", "Non-vegan Meals"]
-
-        choice = enquiries.choose("Are you a vegan or a non-vegan?", vegnonveg)
-
-        print(choice)
-
-        print("Okay, so you chose", choice, "then here are some advices and meals you SHOULD eat")
-
-        if (choice == "Vegan Meals"):
             
-            for veg in vegan_meals:
+        if (option == "1"):
+            
+            vegnonveg = ["Vegan Meals", "Non-vegan Meals"]
 
-                print(veg)
+            choice = enquiries.choose("Are you a vegan or a non-vegan?", vegnonveg)
 
-                sys.stdout.flush( )
+            print(choice)
 
-                time.sleep(1)
+            print("Okay, so you chose", choice, "then here are some advices and meals you SHOULD eat")
 
-        if (choice == "Non-vegan Meals"):
+            if (choice == "Vegan Meals"):
+                
+                user["meals"]["1"] = "Avocado"
+                
+                user["meals"]["2"] = "Quinoa"
+                
+                user["meals"]["3"] = "Tahini"
+                
+                user["meals"]["4"] = "Olive Oil"
+                
+                user["meals"]["5"] = "Dried Fruits"
+                
+                user["meals"]["6"] = "Legumes"
+                
+                user["meals"]["7"] = "Sweet Potatoes"
+                
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"], sep = '\n')
 
-            for non_veg in non_vegan_meals:
+                menu()
 
-                print(non_veg)
+            if (choice == "Non-vegan Meals"):
 
-                sys.stdout.flush()
-
-                time.sleep(1)
-
-
+                user["meals"]["1"] = "Meat (beef, pork, lamb, and other red meats)"
+                
+                user["meals"]["2"] = "Eggs"
+                
+                user["meals"]["3"] = "Cheese"
+                
+                user["meals"]["4"] = "Butter"
+                
+                user["meals"]["5"] = "Dairy products"
+                
+                user["meals"]["6"] = "Snacks that contain plenty of protein and healthy carbohydrates"
+                
+                user["meals"]["7"] = "Potatoes and starches."
+                
+                user["meals"]["8"] = "Salmon and oily fish."
+                
+                user["meals"]["9"] = "Nuts and nut butters."
+                
+                user["meals"]["10"] = "Protein shakes. Protein shakes can help a person to gain weight easily and efficiently."
+                
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"],user["meals"]["8"],user["meals"]["9"],user["meals"]["10"], sep = '\n')
+                
+                menu()
+    menu()
 
 if (18.5<bmi<24.9):
     
     print("Average. You are in a pretty good shape and I can give some advices on how to keep that shape!")
-    
-    average = ["Diet Advices", "Exercises", "Good Habits", "Bad Habits Monitor"]
-    
-    choice = enquiries.choose("On which of these you want an advice?", average)
-    
-    print(choice)
 
-    if (choice == "Exercises"):
-        
+    #average = ["Diet Advices", "Exercises"]
     
+    #choice = enquiries.choose("On which of these you want an advice?", average)
+    
+    def menu():
 
-        if (bmi>18.5):
+        print("Press The Key To Choose\n  1. Exercises \n 2. Exit")
+
+        option = input()
+
+
+        if (option == "1"):
             
-            print("Your BMI is", bmi, "So here are some exercises for you")
+            user["exercise"]["jog"] = "5km"
 
-            average_exercise = ["20 push ups","20 press","30 jumping jacks","20 sit ups","30s plank + 5k Jog"]
-        
-            for item in average_exercise:
+            user["exercise"]["plank"] = "30s"
+
+            user["exercise"]["pushup"] = 20
+
+            user["exercise"]["press"] = 20
+
+            user["exercise"]["squat"] = 20
+
+            user["exercise"]["jumping_jack"] = 30 
+
+            print("Jogging: ", user["exercise"]["jog"], "Plank: ", user["exercise"]["plank"], "Push-up: ", user["exercise"]["pushup"],"Press: ", user["exercise"]["press"], "Squats: ", user["exercise"]["squat"], "Jumping Jacks: ", user["exercise"]["jumping_jack"], sep='\n')
+            menu()
             
-                print(item)
+        if (option == "2"):
+            
+            quit()
 
-                sys.stdout.flush()
-
-                time.sleep(1)
-                
-
-    
-    elif (choice == "Diet Advices"):
-        
-        average_diet = ["a", "b", "c", "d"]
-    
-        rand_av_diet = random.choice(average_diet)
-
-        print(rand_av_diet)
-    
-    
-    elif (choice == "Good Habits"):
-
-        average_habits = ["a", "b", "c", "d"]
-
-        rand_av_hab = random.choice(average_habits)
-
-        print(rand_av_hab)
-
-
+    menu()
 
 if (25<bmi<29.9):
     
@@ -291,23 +218,73 @@ if (25<bmi<29.9):
         
         print(item)
 
-    lower_overweight = ["Diet Advices"]
+    def menu():
 
-    choice = enquiries.choose("Advice:", lower_overweight)
+        print("Press The Key To Choose\n  1. Diet \n 2. Exit")
 
-    print(choice)
-
-    if (choice == "Diet Advices"):
-
-        print("There are two options for you right now")
+        option = input()
         
-        for diet in diet_overweight:
+        def submenu():
 
-            print(diet)
+            print("Press The Key To Choose\n  a. Option 1 \n s. Option 2 \n d. Go back")
 
-            sys.stdout.flush()
+            option = input()
 
-            time.sleep(.2)
+            if (option == "a"):
+
+                print("There are two options for you right now")
+
+                user["meals"]["1"] = "First: "
+
+                user["meals"]["2"] = "No animal products (except of fish and eggs)"
+
+                user["meals"]["3"] = "Lot of plant based foods"
+
+                user["meals"]["4"] = "Fruits"
+
+                user["meals"]["5"] = "Vegetables"
+
+                user["meals"]["6"] = "Legumes/beans"
+
+                user["meals"]["7"] = "Whole Grains"
+
+                user["meals"]["8"] = "Salad option: Black-eyed peas and brown rice with chopped tomatoes and roasted peppers"
+
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"], user["meals"]["8"], sep = '\n')
+
+                submenu()
+
+            elif (option == "s"):
+
+                user["meals"]["1"] = "Second: "
+
+                user["meals"]["2"] = "No animal products (except of eggs, dairy, fish and shellfish)"
+
+                user["meals"]["3"] = "Lot of plant based foods"
+
+                user["meals"]["4"] = "Fruits"
+
+                user["meals"]["5"] = "Vegetables"
+
+                user["meals"]["6"] = "Legumes/beans"
+
+                user["meals"]["7"] = "Whole Grains"
+
+                user["meals"]["8"] = "Black-eyed peas and brown rice with shrimp, chopped tomatoes, roasted peppers and reduced fat cheddar cheese"
+
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"], user["meals"]["8"], sep = '\n')
+
+                submenu()
+
+            elif (option == d):
+                
+                menu()
+
+        submenu()
+    
+    menu()
+
+            
 
 if (30<bmi):
     
@@ -322,35 +299,73 @@ if (30<bmi):
         sys.stdout.flush()
         
         time.sleep(1)
+
+    def menu():
+
+        print("Press The Key To Choose\n  1. Diet \n 2. Exit")
+
+        option = input()
+
+        def submenu():
+
+            print("Press The Key To Choose\n  a. Option 1 \n s. Option 2 \n d. Go back")
+
+            option = input()
     
-    print("So what advices can I give?")
+            if (option == "a"):
 
-    for advice in advice_overweight:
-        
-        print(advice)
-        
-        sys.stdout.flush()
+                print("There are two options for you right now")
 
-        time.sleep(1)
+                user["meals"]["1"] = "First: "
+                
+                user["meals"]["2"] = "No animal products (except of fish and eggs)"
+                
+                user["meals"]["3"] = "Lot of plant based foods"
+                
+                user["meals"]["4"] = "Fruits"
+                
+                user["meals"]["5"] = "Vegetables"
+                
+                user["meals"]["6"] = "Legumes/beans"
+                
+                user["meals"]["7"] = "Whole Grains"
 
+                user["meals"]["8"] = "Salad option: Black-eyed peas and brown rice with chopped tomatoes and roasted peppers"
+                
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"], user["meals"]["8"], sep = '\n')
+                
+                submenu()
 
+            elif (option == "s"):
+                
+                user["meals"]["1"] = "Second: "
 
-    overweight = ["Diet Advices"]
+                user["meals"]["2"] = "No animal products including fish our poultry (except of eggs and dairy"
 
-    choice = enquiries.choose("Advice:", overweight)
+                user["meals"]["3"] = "Lot of plant based foods"
 
-    print(choice)
+                user["meals"]["4"] = "Fruits"
 
-    if (choice == "Diet Advices"):
+                user["meals"]["5"] = "Vegetables"
 
-        print("There are two options for you right now")
-        
-        for item in diet_obesity:
+                user["meals"]["6"] = "Legumes/beans"
+
+                user["meals"]["7"] = "Whole Grains"
+
+                user["meals"]["8"] = "Salad option: Black-eyed peas and brown rice with chopped tomatoes and roasted peppers"
+                
+                print(user["meals"]["1"], user["meals"]["2"],user["meals"]["3"],user["meals"]["4"],user["meals"]["5"],user["meals"]["6"],user["meals"]["7"], user["meals"]["8"], sep = '\n')
+                
+                submenu()
+
+            elif (option == "d"):
+
+                menu()
             
-            print(item)
-
-            sys.stdout.flush()
-
-            time.sleep(1)
-
+        if (option == "3"):
+            
+                quit()
+        
+        submenu()
     
+    menu()
